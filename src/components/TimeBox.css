@@ -1,0 +1,44 @@
+.timer__timebox {
+    background: yellow;
+    border: 1px solid #333;
+    padding: 20px 20px 40px;
+    border-radius: 5px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.timer__timebox h1 {
+    font-size: 120px;
+    line-height: 130px;
+    color: #333;
+}
+
+.timer__timebox div {
+    background-color: #333;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    transition: 0.2s linear;
+}
+
+.timer__timebox div:hover {
+    letter-spacing: 3px;
+}
+
+/*********************MEDIA QUERIES*************************/
+
+@media screen and (max-width: 790px){
+    .timer__timebox {
+        padding: 15px 15px 35px;
+        border-radius: 5px;
+    }
+
+    .timer__timebox h1 {
+        font-size: 90px;
+        line-height: 100px;
+    }
+}
