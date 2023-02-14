@@ -1,16 +1,19 @@
 .timer__timebox {
+    width: 190px;
     background: yellow;
     border: 1px solid #333;
     padding: 20px 20px 40px;
     border-radius: 5px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     position: relative;
+    text-align: center;
 }
 
 .timer__timebox h1 {
     font-size: 120px;
     line-height: 130px;
     color: #333;
+    text-align: center;
 }
 
 .timer__timebox div {
@@ -33,6 +36,7 @@
 
 @media screen and (max-width: 790px){
     .timer__timebox {
+        width: 180px;
         padding: 15px 15px 35px;
         border-radius: 5px;
     }
