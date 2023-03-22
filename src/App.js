@@ -5,35 +5,36 @@ import { useState, useEffect } from 'react';
 
 function App() {
     const [start, setStart] = useState(false);
-    const [seconds, setSeconds] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-    const [hours, setHours] = useState(0);
+    const [time, setTime] = useState({
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    })
 
     useEffect(() => {
-        let interval = null;
+        let intervalId = null;
         if (start) {
-            interval = setInterval(() => {
-                setSeconds(seconds + 1);
+            intervalId = setInterval(() => {
+                setTime((prevTime) => {
+                    let { hours, minutes, seconds } = prevTime;
+                    if (seconds === 59) {
+                        seconds = 0;
+                        if (minutes === 59) {
+                            minutes = 0;
+                            hours++;
+                        } else {
+                            minutes++;
+                        }
+                    } else {
+                        seconds++;
+                    }
+                    return { hours, minutes, seconds }
+                });
             }, 1000);
-
-            if (seconds > 59) {
-                setMinutes(minutes + 1);
-                setSeconds(0);
-            }
-            if (minutes > 59) {
-                setHours(hours + 1);
-                setMinutes(0);
-            }
-        } else {
-            clearInterval(interval);
         }
-
-        return () => {
-            clearInterval(interval);
-        }
-
-    }, [start, seconds, minutes, hours]);
-
+        return () => clearInterval(intervalId);
+    }, [start]);
+    
     const handleStartClick = () => {
         setStart(!start);
     }
@@ -43,19 +44,19 @@ function App() {
     }
 
     const handleResetClick = () => {
-        setStart(false);
-        setSeconds(0);
-        setMinutes(0);
-        setHours(0);
+        setStart(false);    
+        setTime({
+            hours: 0,
+            minutes: 0,
+            seconds: 0
+        })
     }
 
     return (
         <div className="App">
             
             <div className='App__timer'>
-                <TimeBox time={hours} label="Hours"/>
-                <TimeBox time={minutes} label="Minutes"/>
-                <TimeBox time={seconds} label="Seconds"/>
+                <TimeBox time={time} />
             </div>
 
             <div className='App__button-container'>

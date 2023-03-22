@@ -1,14 +1,23 @@
 import './TimeBox.css';
 
-function TimeBox({ time, label }) {
-
-    let Time = time < 10 ? '0'+ time : time;
+function TimeBox({ time }) {
+    const { hours, minutes, seconds } = time;
 
     return (
-        <div className="timer__timebox">
-            <h1>{ Time }</h1>
-            <div>{ label }</div>
-        </div>
+        <>
+            <div className="timer__timebox">
+                <h1>{ hours.toString().padStart(2, '0') }</h1>
+                <div>Hours</div>
+            </div>
+            <div className="timer__timebox">
+                <h1>{ minutes.toString().padStart(2, '0') }</h1>
+                <div>Minutes</div>
+            </div>
+            <div className="timer__timebox">
+                <h1>{ seconds.toString().padStart(2, '0') }</h1>
+                <div>Seconds</div>
+            </div>
+        </>
     )
 }
 
